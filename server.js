@@ -33,6 +33,17 @@ app.get('/api/diary/users', (req, res) => {
     })
 });
 
+//update the specific profile by id of db
+app.put('/api/diary/users/id=:id&profile=:profile&name=:name&addr1=:addr1&addr2=:addr2&email=:email', (req, res) => {
+    db.query("UPDATE users SET user_name="+name+" user_email="+email+" address_f="+addr1+" address_l="+addr2+" img= WHERE id="+id+";", (err, result) => {
+        if(!err){
+            res.json(result);
+        }else{
+            console.log(err);
+        } 
+    })
+});
+
 app.get('/api/diary/logday', (req, res) => {
     db.query("SELECT * FROM logday;", (err, result) => {
         if(!err){
