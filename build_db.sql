@@ -19,18 +19,6 @@ VALUES ("abc123", "4119f341f23c55ebf02d7bd735946d6a8cf03f390ff6a9c7c1ce6641a5469
 
 -- ID: abc123 , pwd: 112980317 password is crypted in SHA256 in crypto-js SHA256
 
-CREATE TABLE IF NOT EXISTS logday(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id VARCHAR(256) UNIQUE,
-    question_set JSON
-);
-
-INSERT INTO logday(user_id, date, question_set)
-VALUES("abc123", '["You good?", "How many times did you push up?", "Did you have a good day?", "Decribe your day"]');
-
--- today's date can be obtained by DATE_FORMAT(now(), '%Y-%m-%d')
--- question set is question strings that added all of the questions
-
 CREATE TABLE IF NOT EXISTS questions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(256),
