@@ -33,9 +33,31 @@ app.get('/api/diary/users', (req, res) => {
     })
 });
 
+//get a user id from db
+app.get('/api/diary/users/id=:id', (req, res) => {
+    db.query("SELECT * FROM users where user_id="+req.params.id+";", (err, result) => {
+        if(!err){
+            res.json(result);
+        }else{
+            console.log(err);
+        } 
+    })
+});
+
+//post a user
+app.post('/api/diary/users/id=:id&profile=:profile&name=:name&addr1=:addr1&addr2=:addr2&email=:email', (req, res) => {
+    db.query("UPDATE users SET img="+req.params.profile+" user_name="+req.params.name+" user_email="+req.params.email+" address_f="+req.params.addr1+" address_l="+req.params.addr2+" img= WHERE id="+re.params.id+";", (err, result) => {
+        if(!err){
+            res.json(result);
+        }else{
+            console.log(err);
+        } 
+    })
+});
+
 //update the specific profile by id of db
 app.put('/api/diary/users/id=:id&profile=:profile&name=:name&addr1=:addr1&addr2=:addr2&email=:email', (req, res) => {
-    db.query("UPDATE users SET user_name="+name+" user_email="+email+" address_f="+addr1+" address_l="+addr2+" img= WHERE id="+id+";", (err, result) => {
+    db.query("UPDATE users SET img="+req.params.profile+" user_name="+req.params.name+" user_email="+req.params.email+" address_f="+req.params.addr1+" address_l="+req.params.addr2+" img= WHERE id="+re.params.id+";", (err, result) => {
         if(!err){
             res.json(result);
         }else{
