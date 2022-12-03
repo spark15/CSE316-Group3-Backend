@@ -67,7 +67,7 @@ app.put('/api/diary/users/id=:id&profile=:profile&name=:name&addr1=:addr1&addr2=
 });
 
 app.get('/api/diary/questions/id=:id', (req, res) => {
-    db.query("SELECT * FROM questions WHERE user_id"+req.params.id+";", (err, result) => {
+    db.query("SELECT * FROM questions WHERE user_id = \""+req.params.id+"\";", (err, result) => {
         if(!err){
             res.json(result);
         }else{
