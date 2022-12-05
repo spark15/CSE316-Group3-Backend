@@ -80,6 +80,26 @@ app.get('/api/diary/questions/id=:id', (req, res) => {
     })
 });
 
+app.post('/api/diary/questions', (req, res) => {
+    if (req.body.question_type === "multiple choice") {
+        db.query("INSERT into questions(user_id,question,question_selection, question_type, question_answers) values ('"+req.body.user_id+"', '"+req.body.question+"', '"+req.body.question_selection+"','"+req.body.question_type+"', '[]');", (err, result) => {
+            if(!err) {
+                res.json(result);
+            } else {
+                console.log(err);
+            }
+        });
+    } else {
+        db.query("INSERT into questions(user_id,question,question_selection, question_type, question_answers) values ('"+req.body.user_id+"', '"+req.body.question+"', '[]', '"+req.body.question_type+"', '[]');", (err,result) => {
+            if(!err) {
+                res.json(result);
+            } else {
+                console.log(err);
+            }
+        })
+    }
+})
+
 //delete 
 app.delete('/api/diary/questions/user_id=:user_id&question=:question', (req,res) => {
     db.query("Delete from questions where user_id = \"" + req.params.user_id + "\"and question= \"" + req.params.question +"\";", (err, result) => {
