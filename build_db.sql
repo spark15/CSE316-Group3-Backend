@@ -23,24 +23,24 @@ CREATE TABLE IF NOT EXISTS questions(
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id VARCHAR(256),
     question VARCHAR(256),
-    qeustion_selection JSON,
+    question_selection JSON,
     question_type VARCHAR(256),
     question_answers JSON
 );
 
-INSERT INTO questions(user_id, question, qeustion_selection, question_type, question_answers) VALUES(
+INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
     "abc123", "You good?", '["Good", "Soso", "Bad"]', "multiple choice", '[{"date": "2022-12-1", "answer": "Good"}, {"date": "2022-12-1", "answer": "Bad"}]'
 );
 
-INSERT INTO questions(user_id, question, qeustion_selection, question_type, question_answers) VALUES(
+INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
     "abc123", "How many times did you push up?", "[]", "number", '[{"date": "2022-12-1", "answer": "10"}, {"date": "2022-12-1", "answer": "40"}]'
 );
 
-INSERT INTO questions(user_id, question, qeustion_selection, question_type, question_answers) VALUES(
+INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
     "abc123", "Did you have a good day?", "[]", "boolean", '[{"date": "2022-12-1", "answer": "TRUE"}, {"date": "2022-12-1", "answer": "FALSE"}]'
 );
 
-INSERT INTO questions(user_id, question, qeustion_selection, question_type, question_answers) VALUES(
+INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
     "abc123", "Decribe your day", "[]", "text", '[{"date": "2022-12-1", "answer": "It was good"}, {"date": "2022-12-1", "answer": "It was bad"}]'
 );
 
