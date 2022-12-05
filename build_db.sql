@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users(
 );
 
 INSERT INTO users (user_id, password, user_name, user_email, address_f, address_l, img)
-VALUES ("abc123", "4119f341f23c55ebf02d7bd735946d6a8cf03f390ff6a9c7c1ce6641a5469b16", "JunHyeongPark", 
+VALUES ("abc123", "ae03ab3e6fce8f5255680d9dc2c351a325daa86e94eb35bd6c19b15c0a19720", "JunHyeongPark", 
 "abc123@extemp.com", "119 songdo moonwha-ro", "Incheon, Yeonsu-gu, Korea", "");
 
 -- ID: abc123 , pwd: 112980317 password is crypted in SHA256 in crypto-js SHA256
