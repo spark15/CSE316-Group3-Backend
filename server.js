@@ -60,7 +60,7 @@ app.post('/api/diary/users/', (req, res) => {
 
 //update the specific profile by id of db
 app.put('/api/diary/users', (req, res) => {
-    db.query("UPDATE users SET img=\""+req.body.profile+"\", user_name=\""+req.body.name+"\", user_email=\""+req.body.email+"\", address_f=\""+req.body.address1+"\", address_l=\""+req.body.address2+"\" WHERE user_id=\""+req.body.user_id+"\";", (err, result) => {
+    db.query("UPDATE users SET password=\""+req.body.password+"\", img=\""+req.body.profile+"\", user_name=\""+req.body.name+"\", user_email=\""+req.body.email+"\", address_f=\""+req.body.address1+"\", address_l=\""+req.body.address2+"\" WHERE user_id=\""+req.body.user_id+"\";", (err, result) => {
         if(!err){
             res.json(result);
         }else{
