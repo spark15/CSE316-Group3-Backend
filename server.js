@@ -69,6 +69,7 @@ app.put('/api/diary/users', (req, res) => {
     })
 });
 
+//get questions by user_id
 app.get('/api/diary/questions/id=:id', (req, res) => {
     db.query("SELECT * FROM questions WHERE user_id = \""+req.params.id+"\";", (err, result) => {
         if(!err){
@@ -78,6 +79,15 @@ app.get('/api/diary/questions/id=:id', (req, res) => {
         } 
     })
 });
+
+//delete 
+app.delete('/api/diary/questions/user_id=:user_id&question=:question', (req,res) => {
+    db.query("Delete from questions where user_id = \"" + req.params.user_id + "\"and question= \"" + req.params.question +"\";", (err, result) => {
+        if (!err) {
+            res.json(result);
+        } else {
+            console.log(err);
+        }})});
 
 app.listen(app.get('port'), () => {
     console.log('Server is on ' + app.get('port'));
