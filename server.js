@@ -48,8 +48,8 @@ app.get('/api/diary/users/user_id=:user_id', (req, res) => {
 });
 
 //post a user
-app.post('/api/diary/users/id=:id&profile=:profile&name=:name&addr1=:addr1&addr2=:addr2&email=:email', (req, res) => {
-    db.query("UPDATE users SET img="+req.params.profile+" user_name="+req.params.name+" user_email="+req.params.email+" address_f="+req.params.addr1+" address_l="+req.params.addr2+" img= WHERE id="+re.params.id+";", (err, result) => {
+app.post('/api/diary/users/', (req, res) => {
+    db.query("INSERT INTO users(user_id, password, user_name, user_email,address_f, address_l) VALUES('"+req.body.user_id+"', '"+req.body.password+"' ,'"+req.body.name+"', '"+req.body.email+"', '"+req.body.address1+"', '"+req.body.address2+"');", (err, result) => {
         if(!err){
             res.json(result);
         }else{
