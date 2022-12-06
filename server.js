@@ -101,9 +101,10 @@ app.post('/api/diary/questions', (req, res) => {
 })
 
 //delete 
-app.delete('/api/diary/questions/user_id=:user_id&question=:question', (req,res) => {
-    db.query("Delete from questions where user_id = \"" + req.params.user_id + "\"and question= \"" + req.params.question +"\";", (err, result) => {
+app.delete('/api/diary/questions/user_id=:user_id&id=:id', (req,res) => {
+    db.query("Delete from questions where user_id =\"" + req.params.user_id + "\" and id=\"" + req.params.id +"\";", (err, result) => {
         if (!err) {
+            console.log("Delete from questions where user_id =\"" + req.params.user_id + "\" and id=\"" + req.params.id +"\";")
             res.json(result);
         } else {
             console.log(err);
