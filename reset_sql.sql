@@ -34,19 +34,19 @@ CREATE TABLE IF NOT EXISTS questions(
 );
 
 INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
-    "abc123", "You good?", '["Good", "Soso", "Bad"]', "multiple choice", '[{"date": "2022-12-1", "answer": "Good"}, {"date": "2022-12-1", "answer": "Bad"}]'
+    "abc123", "You good?", '["Good", "Soso", "Bad"]', "multiple choice", '[{"date": "2022-12-1", "answer": "Good"}, {"date": "2022-12-3", "answer": "Bad"}, {"date": "2022-12-7", "answer": "Bad"}]'
 );
 
 INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
-    "abc123", "How many times did you push up?", "[]", "number", '[{"date": "2022-12-1", "answer": "10"}, {"date": "2022-12-1", "answer": "40"}]'
+    "abc123", "How many times did you push up?", "[]", "number", '[{"date": "2022-12-1", "answer": "10"}, {"date": "2022-12-3", "answer": "40"}, {"date": "2022-12-7", "answer": "10"}]'
 );
 
 INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
-    "abc123", "Did you have a good day?", "[]", "boolean", '[{"date": "2022-12-1", "answer": "TRUE"}, {"date": "2022-12-1", "answer": "FALSE"}]'
+    "abc123", "Did you have a good day?", "[]", "boolean", '[{"date": "2022-12-1", "answer": "TRUE"}, {"date": "2022-12-3", "answer": "FALSE"}, {"date": "2022-12-7", "answer": "TRUE"}]'
 );
 
 INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
-    "abc123", "Decribe your day", "[]", "text", '[{"date": "2022-12-1", "answer": "It was good"}, {"date": "2022-12-1", "answer": "It was bad"}]'
+    "abc123", "Decribe your day", "[]", "text", '[{"date": "2022-12-1", "answer": "It was good"}, {"date": "2022-12-3", "answer": "It was bad"}, {"date": "2022-12-7", "answer": "It was bad"}]'
 );
 
 -- compare with date and user_id and get question and questoion_value
