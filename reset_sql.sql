@@ -53,3 +53,5 @@ INSERT INTO questions(user_id, question, question_selection, question_type, ques
 -- we dont need to think about question_type since it is varchar
 -- order is the order of question set, if we change the question set, reassemble question set
 -- and put into question_set, split the question_set and put index number into order and String into question
+
+set sql_safe_updates=0;
