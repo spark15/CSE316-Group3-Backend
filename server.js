@@ -110,6 +110,17 @@ app.delete('/api/diary/questions/user_id=:user_id&id=:id', (req,res) => {
             console.log(err);
         }})});
 
+app.put('/api/diary/questions/', (req,res) => {
+    db.query("update questions set question_answers = '"+ req.body.question_answers + "' where  question = '"+ req.body.question+"' and user_id = '" + req.body.user_id+ "';", (err, result) => {
+        if (!err) {
+            console.log("update questions set question_answers = '"+ req.body.question_answers + "' where  question = '"+ req.body.question+"' and user_id = '" + req.body.user_id+ "';");
+            res.json(result);
+        } else {
+            console.log(err);
+        }
+    });
+})
+
 app.listen(app.get('port'), () => {
     console.log('Server is on ' + app.get('port'));
 })

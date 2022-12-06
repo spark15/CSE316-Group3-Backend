@@ -42,7 +42,7 @@ INSERT INTO questions(user_id, question, question_selection, question_type, ques
 );
 
 INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
-    "abc123", "Did you have a good day?", "[]", "boolean", '[{"date": "2022-12-1", "answer": "TRUE"}, {"date": "2022-12-3", "answer": "FALSE"}, {"date": "2022-12-7", "answer": "TRUE"}]'
+    "abc123", "Did you have a good day?", "[]", "boolean", '[{"date": "2022-12-1", "answer": true}, {"date": "2022-12-3", "answer": false}, {"date": "2022-12-7", "answer": true}]'
 );
 
 INSERT INTO questions(user_id, question, question_selection, question_type, question_answers) VALUES(
