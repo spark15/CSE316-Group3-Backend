@@ -5,26 +5,83 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })  
 const PORT = process.env.PORT || 3306;
 const cors = require("cors");
-
 const corsOptions = {
     origin:"http://localhost:3000"
 };
-
-const db = mysql.createConnection({
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: 'semi9010~~',
-    database: 'diary'
-});
-
-db.connect();
 
 app.set('port', process.env.PORT || 3305);
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+const multer = require('multer');
+const AWS = require('aws-sdk');
+const multerS3 = require('multer-s3');
+
+const dotenv = require("dotenv")
+dotenv.config();
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: 'brilliantchoi98!',
+    database: 'diary'
+});
+
+db.connect();
+
+const localStorage = multer.diskStorage({
+    destination(req, file, cb){
+        cb(null, "uploads/");
+    },
+    filename(req, file, cb){
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
+
+const localUpload = multer({storage: localStorage})
+
+const s3 = new AWS.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    region: process.env.AWS_REGION
+});
+
+var mimetype;
+const upload = multer({
+    storage : multerS3({
+        s3:s3,
+        bucket:'316projectimage',
+        key : function(req, file, cb) {
+            mimetype = file.mimetype;
+            console.log(mimetype);
+            var ext = file.mimetype.split('/')[1];
+            if(!['png', 'jpg', 'jpeg', 'gif', 'bmp'].includes(ext)) {
+                return cb(new Error('Only images are allowed'));
+            }
+            cb(null, Date.now() + '.' + file.originalname.split('.').pop());
+            
+        },
+        contentType: multerS3.AUTO_CONTENT_TYPE,
+    }),
+    acl : 'public-read-write',
+    limits: { fileSize: 100 * 1024 * 1024 },
+});
+
+// 이미지 업로드 요청
+app.post('/img', upload.single('file'), async (req, res) => {
+    console.log("in upload method");
+    //const files = req.files;
+    const file = req.file;
+    //console.log(files)
+    console.log(file)
+    // console.log(req.file.location)
+    // res.status(200).json({ location: req.file.location })
+    //res.send({"status":"api okay"})
+    res.send(file);
+});
 
 app.get('/api/diary/users', (req, res) => {
     db.query("SELECT * FROM users;", (err, result) => {
@@ -49,7 +106,7 @@ app.get('/api/diary/users/user_id=:user_id', (req, res) => {
 
 //post a user
 app.post('/api/diary/users/', (req, res) => {
-    db.query("INSERT INTO users(user_id, password, user_name, user_email,address_f, address_l) VALUES('"+req.body.user_id+"', '"+req.body.password+"' ,'"+req.body.name+"', '"+req.body.email+"', '"+req.body.address1+"', '"+req.body.address2+"');", (err, result) => {
+    db.query("INSERT INTO users(user_id, password, user_name, user_email,address_f, address_l, img) VALUES('"+req.body.user_id+"', '"+req.body.password+"' ,'"+req.body.name+"', '"+req.body.email+"', '"+req.body.address1+"', '"+req.body.address2+"', '"+req.body.img+"');", (err, result) => {
         if(!err){
             res.json(result);
         }else{
